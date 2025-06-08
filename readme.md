@@ -1,44 +1,46 @@
 
----
 
 # Fitness Class Booking API
 
-This is a simple Django REST API for a fitness studio.
-People can **view available classes**, **book a class**, and **see their bookings** using this API.
 
-🚀 Live demo: [https://p01--class-booking--q7xqfnhbd4ht.code.run](https://p01--class-booking--q7xqfnhbd4ht.code.run)
+**Live Demo:**
+[https://p01--class-booking--q7xqfnhbd4ht.code.run](https://p01--class-booking--q7xqfnhbd4ht.code.run)
 
 ---
 
+## API Base URL
+
+`https://p01--class-booking--q7xqfnhbd4ht.code.run/api/`
 
 ---
 
 ## API Endpoints
 
-All endpoints are under:
-`https://p01--class-booking--q7xqfnhbd4ht.code.run/api/`
+---
+
+### GET /classes/
+
+View all upcoming fitness classes.
+
+**URL:**
+`https://p01--class-booking--q7xqfnhbd4ht.code.run/api/classes/`
 
 ---
 
-### `GET /classes/`
+### POST /classes/
 
-Get a list of all upcoming fitness classes.
+Add a new fitness class.
 
+**URL:**
+`https://p01--class-booking--q7xqfnhbd4ht.code.run/api/classes/`
 
-
----
-
-###  `POST /classes/`
-
-Create a new fitness class. *(For admin usage)*
-
-#### Sample Request:
+**Example JSON:**
 
 ```json
 {
   "name": "Yoga",
   "datetime": "2025-06-12 17:30",
-  "teacher": "Anjali Mehra",
+  "teacher": "ABCD XYZ",
   "total_slots": 15,
   "fees": 300
 }
@@ -46,40 +48,46 @@ Create a new fitness class. *(For admin usage)*
 
 ---
 
-### `POST /book/`
+### POST /book/
 
-Book a spot in a fitness class.
+Book a class using its ID.
 
-####  Sample Request:
+**URL:**
+`https://p01--class-booking--q7xqfnhbd4ht.code.run/api/book/`
+
+**Example JSON:**
 
 ```json
 {
   "class_id": 1,
   "client_name": "Rajat Rawal",
-  "client_email": "rajat@example.com",
-  "phone_number": "9876543210"
+  "client_email": "rwlrajat@gmail.com",
+  "phone_number": "8624094055"
 }
 ```
 
-#### Response Example:
+**Example Response:**
 
 ```json
 {
   "id": 2,
   "client_name": "Rajat Rawal",
-  "client_email": "rajat@example.com",
+  "client_email": "rwlrajat@gmail.com",
   "booking_datetime": "2025-06-07T17:45:00Z",
-  "phone_number": "9876543210"
+  "phone_number": "8624094055"
 }
 ```
 
 ---
 
-### `GET /bookings/?email=rajat@example.com`
+### GET /bookings/?email=[your@email.com](mailto:your@email.com)
 
-Get all bookings made by a specific email.
+See all your bookings using your email.
 
-#### Response Example:
+**URL:**
+`https://p01--class-booking--q7xqfnhbd4ht.code.run/api/bookings/?email=rwlrajat@gmail.com`
+
+**Example Response:**
 
 ```json
 [
@@ -95,29 +103,22 @@ Get all bookings made by a specific email.
 
 ---
 
-## Tech Used
-
-* **Python**
-* **Django + DRF**
-* **SQLite (in-memory)**
-
----
-
-## How to Run Locally
+## Run Locally
 
 ```bash
-git clone https://github.com/yourusername/fitness-booking-api.git
+git clone https://github.com/rajatrawal/fitness-booking-api.git
 cd fitness-booking-api
 
 # Create virtual environment
 python -m venv env
-source env/bin/activate   # or env\Scripts\activate on Windows
+env\Scripts\activate  # on Windows
 
 # Install packages
 pip install -r requirements.txt
 
-# Run migrations and server
+# Migrate and run server
 python manage.py migrate
 python manage.py runserver
 ```
+
 
