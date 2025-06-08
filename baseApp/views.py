@@ -13,6 +13,7 @@ class ClassBookingListView(APIView):
         if not  email:
             return Response({'error':'Email is required'},status=HTTP_400_BAD_REQUEST)
         bookings = ClassBooking.objects.filter(client_email = email )
+
         serializer = ClassBookingSerializer(bookings,many=True)
         return Response(serializer.data,status=200)
     
